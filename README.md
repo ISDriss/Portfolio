@@ -1,4 +1,6 @@
-**How to use**  
-Download the repo,  
-open the index.html with your browser,  
-and voila :D
+The personnal engineering portfolio of 
+Ilian SEBTI
+
+Started filling it from my 4th year at ESILV.
+
+Access the github-pages here : https://isdriss.github.io/Portfolio/
