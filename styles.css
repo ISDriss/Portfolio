@@ -125,3 +125,13 @@ footer {
     margin: 1.5rem 0;
     border-radius: 8px;
 }
+
+/* Slide Image Styling */
+.slide-image {
+    width: 100%;      /* Ensure the slides take up the full width */
+    height: auto;     /* Maintain aspect ratio */
+    display: block;   /* Ensures the images are block-level and take up full width */
+    margin: 0;        /* Remove any spacing between slides */
+    padding: 0;       /* Remove padding, just to be sure */
+    border-radius: 0; /* No rounded edges for a continuous look */
+}
