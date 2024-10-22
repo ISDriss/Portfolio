@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SoundMachine">
+    <title>Proximity Sensor</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Proximity Sensor</h1>
+        <p></p>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p> Inspired by Arduino cars and Roombas, <br>
+                I initially wanted to make a small car that would detect and drive around walls and corners</p>
+            
+            <section class="slides">
+                <img src="images/SoundMachine1.jpg" alt="Slide 1" class="slide-image">
+                <img src="images/SoundMachine2.jpg" alt="Slide 2" class="slide-image">
+            </section>
+            
+            <p>I ended up making something ressembling more of a Sound Machine, anyway I started by using a ultrasound distance sensor</p>
+        </section>
+
+        <section>
+            <h2>Process</h2>
+            <p> Due to all the usual distance sensors (HC-SR04) being used by my classmates,<br> 
+                I landed on the LV-maxsonar EZ2 from MaxBotix.Inc</p>
+            <img src="images/SoundMachine3.jpg" alt="LV-maxsonar EZ2" class="project-image">
+            
+            <br>
+            <section>
+                <h3>Iteration 1: Proximity sensor</h3>
+                <p>Helping myself with the arduino forums and some Simple code, I end up with a proximity sensor</p>
+
+                <section class="slides">
+                    <img src="images/SoundMachine4.jpg" alt="Slide 1" class="slide-image">
+                    <pre class="code-block">
+                        <code>
+void setup() {
+    Serial.begin(9600);
+}
+                          
+void loop () {
+    int dist = analogRead(A0);
+    Serial.println(dist);
+                          
+    delay(100);
+}
+                        </code>
+                    </pre>
+                </section>
+            </section>
+
+            <br>
+            <section>
+                <h3>Iteration 2: Add Speaker</h3>
+                <p>I've decided afterwards to add a speaker to visualize the detected distance with audio cues</p>
+
+                <section class="slides">
+                    <img src="images/SoundMachine5.jpg" alt="Slide 1" class="slide-image">
+                    <pre class="code-block">
+                        <code>
+int buzzer_pin = 8;
+
+void setup() {
+    Serial.begin(9600);
+}
+                            
+void loop () {
+    int dist = analogRead(A0);
+    Serial.println(dist);
+                            
+    tone(8,dist + 50,10);
+    // noTone(buzzer_pin);
+    delay(20);
+}
+                        </code>
+                    </pre>
+                </section>
+            </section>
+
+            <br>
+            <section>
+                <h3>Iteration 3: Frequency potentiometer</h3>
+                <p>Since I found myself changing the frequency of the sounds often, I decided to add a potentiometer to ease the process</p>
+
+                <section class="slides">
+                    <img src="images/SoundMachine6.jpg" alt="Slide 1" class="slide-image">
+                    <pre class="code-block">
+                        <code>
+int buzzer_pin = 8;
+
+void setup() {
+    Serial.begin(9600);
+}
+                            
+void loop () {
+    int dist = analogRead(A0);
+    int deltaT = analogRead(A1);
+    Serial.println(dist);
+                            
+    tone(8,dist + 50,deltaT);
+    // noTone(buzzer_pin);
+    delay(deltaT);
+}
+                        </code>
+                    </pre>
+                </section>
+            </section>
+            
+            <br>
+            <section>
+                <h3>Iteration 4: Replace sound by voices</h3>
+                <p> I eventually found the random-ish sounds to be annoying, so I replaced it by a voice using the Talkie arduino library<br>
+                    available at: https://github.com/ArminJo/Talkie/tree/master</p>
+                <p> Before that however, I had to add an amplification module for the speaker, <br>
+                    I used the design from this guide : https://circuitdigest.com/microcontroller-projects/arduino-based-text-to-speech-converter</p>
+                <img src="images/SoundMachine8.png" alt="circuit" class="project-image">
+                <p>We end up with the final form of this project</p>
+                <section class="slides">
+                    <img src="images/SoundMachine7.jpg" alt="Slide 1" class="slide-image">
+                    <pre class="code-block">
+                        <code>
+#include "Talkie.h"
+#include "Vocab_US_Large.h"
+#include "Vocab_Special.h"!
+                            
+Talkie voice;
+int buzzer_pin = 3;
+                            
+void setup() {
+    Serial.begin(9600);
+                            
+}
+                            
+void loop () {
+    int dist = analogRead(A0);
+    int deltaT = analogRead(A1);
+    Serial.println(dist);
+                            
+    //tone(buzzer_pin,dist + 50,deltaT);
+                            
+    if(dist < 100){
+        voice.say(sp2_DANGER);
+    }
+    else{
+        voice.say(sp2_SAFE);
+    }
+                            
+    delay(deltaT);
+}
+                        </code>
+                    </pre>
+                </section>
+            </section>
+
+            <br>
+            <section>
+                <h3>Demo video</h3>
+                <p>Coming Soon</p>
+            </section>
+        </section>
+        
+        <!-- Back to Portfolio Button -->
+        <a href="../../index.html" class="back-link">Back to Portfolio</a>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 My Portfolio</p>
+    </footer>
+
+</body>
+</html>
