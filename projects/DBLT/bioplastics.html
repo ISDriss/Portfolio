@@ -6,6 +6,7 @@
     <meta name="description" content="bioplastics">
     <title>Bioplastics</title>
     <link rel="stylesheet" href="../../styles.css">
+    <script type="text/javascript" src="../../script.js" ></script>
 </head>
 <body>
 
@@ -29,27 +30,13 @@
     <!-- Main Content Section -->
     <main>
         <img src="images/bioplastic1.png" alt="mycelium" class="project-image">
-
+        <table id="dataTable"></table>
+        
         <script>
-            // Fetch the CSV file from the repository
-            fetch('https://isdriss.github.io/Portfolio/DBLT/recipes.csv')
-                .then(response => response.text())
-                .then(csv => {
-                    const rows = csv.trim().split('\n');
-                    const table = document.getElementById('dataTable');
-    
-                    rows.forEach((row, index) => {
-                        const tr = document.createElement('tr');
-                        const cells = row.split(','); // Split by commas
-                        cells.forEach(cell => {
-                            const td = document.createElement(index === 0 ? 'th' : 'td');
-                            td.textContent = cell.trim();
-                            tr.appendChild(td);
-                        });
-                        table.appendChild(tr);
-                    });
-                })
-                .catch(error => console.error('Error loading CSV:', error));
+            loadCsvToTable(
+            'https://isdriss.github.io/Portfolio/projects/DBLT/recipes.csv',
+            'dataTable'
+            );
         </script>
         
         
