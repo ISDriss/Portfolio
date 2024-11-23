@@ -119,10 +119,10 @@ footer {
 
 /* Styling for project images */
 .project-image {
-    max-width: 70%; /* Ensures the image is responsive */
+    max-width: 60%; /* Ensures the image is responsive */
     height: auto;
     display: block;
-    margin: 1.5rem 0;
+    margin: 1rem auto;
     border-radius: 8px;
 }
 
