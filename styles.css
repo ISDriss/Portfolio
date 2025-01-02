@@ -164,6 +164,7 @@ tr:nth-child(even) {
     flex: 1;                       /* Allow images to flex and take up equal width */
     max-width: 45%;                /* Set a max-width to control the size of each image */
     height: auto;                  /* Maintain aspect ratio */
+    border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow */
 }
 

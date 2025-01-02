@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Scoby sensors">
+    <title>Scoby sensors</title>
+    <link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Scoby sensors</h1>
+        <p>Growing and slicing electronic sensors into Kombucha scoby</p>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p> Symbiotic Culture Of Bacteria and Yeast (SCOBY) is a culinary symbiotic fermentation culture consisting of lactic acid bacteria, 
+                acetic acid bacteria, and yeast which arises in the preparation of sour foods and beverages such as kombucha.
+                <br>
+                In its most common form, SCOBY is a gelatinous, cellulose-based biofilm or microbial mat found floating at the container's air-liquid interface.
+                <br>
+                Here we will explore the potential that scoby embeded electronics offers us. By making some scoby embeded sensors ourselves.
+                <br>
+                In such fashion we plan on making a capacitive touch sensor, a resistive bend sensor and a resistive heat sensor.
+            </p>
+        </section>
+        <br>
+        <section>
+            <h2>Growing a scoby sheet</h2>
+            <p>As scoby is a spoilage of kombucha production, we start by preparing a great quantity of sugar kombucha tea.
+                <br>
+                For 1L of kombucha, we need:<br>
+                - 6g of tea = 3 tea bags <br>
+                - 300g of sugar (50% white, 50% brown) <br>
+                - 800g of boiling water <br>
+                - 100g of vinegar <br>
+                - 100g of scoby <br>
+                <br>
+                <img src="images/scoby/scoby1.webp" alt="scoby" class="project-image">
+                In a large plate mix the water, tea and sugar.
+                <img src="images/scoby/scoby3.webp" alt="scoby" class="project-image">
+                Let the preparation cool off (cover the plate). <br>
+                Grind the scoby into pieces, then add it into the preparation with the vinegar. <br>
+                cover the plate with a plastic film, pucture a hole in it before covering it with medical tape (for aeration). <br>
+                Then put the preparation in the incubator.
+                <section class="slides">
+                    <img src="images/scoby/scoby6.webp" alt="scoby" class="slide-image">
+                    <img src="images/scoby/scoby8.webp" alt="scoby" class="slide-image">
+                    <img src="images/scoby/scoby10.webp" alt="scoby" class="slide-image">
+                    <img src="images/scoby/scoby11.webp" alt="scoby" class="slide-image">
+                </section>
+            </p>
+        </section>
+        <br>
+        <section>
+            <h2>Embeding sensors by growing</h2>
+            <p>
+                We prepare the capacitive the sensors: <br>
+                The touch sensor is a 3D printed (with conductive PLA) pad <br>
+                The stretch sensor is a cutout of a conductive fabric.<br>
+                After sanitising the sensors we put them on top of the scoby.
+                Then we add some of the medium on top of said sensors using a syringe (may need to be done multiple times during the growth).
+                <br>
+                <img src="images/scoby/scoby12.webp" alt="scoby" class="slide-image">
+                <img src="images/scoby/scoby13.webp" alt="scoby" class="slide-image">
+                <img src="images/scoby/scoby14.webp" alt="scoby" class="slide-image">
+                <br>
+                Once the Scoby has grown enough on top of the sensors,<br>
+                The scoby sheet can be extracted, cleaned with water and then dried in a hoven/dehydrator (50°C, 4h).
+                <br>
+                <img src="images/scoby/scoby15.webp" alt="scoby" class="slide-image">
+                <img src="images/scoby/scoby16.webp" alt="scoby" class="slide-image">
+                <img src="images/scoby/scoby17.jpg" alt="scoby" class="project-image">
+                <br>
+            </p>
+        </section>
+        <br>
+        <section>
+            <h2>Embeding sensors by slicing</h2>
+            <p> For the heat sensor, we use a copper wire. Spread on a large surface, the heat dilation of the wire changing its resistance.
+                <br>
+                We cut out a sheet of scoby, rince it and cut it in two parts.
+                Then with the help of somme needles we thread the copper wire on the sheet.
+                When done, we cover with the other sheet and press it to remove air bubbles.
+                <img src="images/scoby/scoby18.webp" alt="scoby" class="project-image">
+            </p>
+        </section>
+        <br>
+        <section>
+            <h2>Testing the sensors</h2>
+            <p> 
+                Once the sensors are successfully embeded. <br>
+                We cut out a small part of the dried scoby with a scalpel to connect the resistive pad and fabric to an actual electronic wire <br>
+                For that sew the wire to the sensor using a conductive string. We can complete this connection with some carefull soldering.<br>
+                <img src="images/scoby/scoby20.jpg" alt="scoby" class="project-image">
+            </p>
+            <br>
+            <h3>capacitive touch sensor</h3>
+            <section>
+                <p>
+                    Using the following circuit (100kΩ resistor here) and code: <br>
+                </p>
+                
+                <img src="images/scoby/scoby21.jpg" class="slide-image">
+                <pre class="code-block">
+                    <code>
+    //Libraries
+    #include &lt;CapacitiveSensor.h&gt;//https://github.com/PaulStoffregen/CapacitiveSensor
+    
+    //Parameters
+    bool autocal = false;
+    const int numReadings  = 10;
+    long readings [numReadings];
+    int readIndex  = 0;
+    long total  = 0;
+    const int sensitivity  = 1000;
+    const int thresh  = 200;
+    const int csStep  = 10000;
+    CapacitiveSensor cs  = CapacitiveSensor(2, 3);
+    
+    void setup() {
+        //Init Serial USB
+        Serial.begin(9600);
+        Serial.println(F("Initialize System"));
+        //Init cs
+        if (autocal) {
+        {
+            cs.set_CS_AutocaL_Millis(0xFFFFFFFF);
+        }
+        }
+    }
+    
+    void loop() {
+        Serial.println(smooth());
+        delay(250);
+    }
+    
+    long smooth() { /* function smooth */
+        ////Perform average on sensor readings
+        long average;
+        // subtract the last reading:
+        total = total - readings[readIndex];
+        // read the sensor:
+        readings[readIndex] = cs.capacitiveSensor(sensitivity);
+        // add value to total:
+        total = total + readings[readIndex];
+        // handle index
+        readIndex = readIndex + 1;
+        if (readIndex >= numReadings) {
+        readIndex = 0;
+        }
+        // calculate the average:
+        average = total / numReadings;
+    
+        return average;
+    }
+                    </code>
+                </pre>
+                <video controls>
+                    <source src="images/scoby/capacitive demo.mp4" type="video/mp4">
+                </video>
+            </section>
+            <br>
+            <h3>resistive stretch sensor</h3>
+            <section>
+                <p>
+                    Using the following circuit (100kΩ resistor, 1microF capacitor) and code: <br>
+                </p>
+                <img src="images/scoby/scoby22.jpg" class="slide-image">
+                <pre class="code-block">
+                    <code>
+    //Parameters
+    const int numReadings  = 10;
+    long readings [numReadings];
+    int readIndex  = 0;
+    long total  = 0;
+    int sensor  = A3;
+
+    void setup() {
+    //Init Serial USB
+    Serial.begin(9600);
+    Serial.println(F("Initialize System"));
+    }
+
+    void loop() {
+    Serial.println(smooth());
+    delay(250);
+    }
+
+    long smooth() { /* function smooth */
+    ////Perform average on sensor readings
+    long average;
+    // subtract the last reading:
+    total = total - readings[readIndex];
+    // read the sensor:
+    readings[readIndex] = analogRead(sensor);
+    // add value to total:
+    total = total + readings[readIndex];
+    // handle index
+    readIndex = readIndex + 1;
+    if (readIndex >= numReadings) {
+    readIndex = 0;
+    }
+    // calculate the average:
+    average = total / numReadings;
+
+    return average;
+    }
+                    </code>
+                </pre>
+                <video controls>
+                    <source src="images/scoby/stretch demo.mp4" type="video/mp4">
+                </video>
+            </section>
+            <br>
+            <h3>resistive heat sensor</h3>
+            <section>
+                <p>
+                    Using a weatstone bridge calibrated for a measured resistance at ambiant temperature of the sensor at 2.4Ω and the following code,<br>
+                    it would have been possible to have an effective sensor. <br>
+                    However due to the copper wire being very thin combined with the necessity to burn the tip to make it conductive.  <br>
+                    I was unfortunately unable to make it work, as any attempt to make the wire connect would lead to it being destroyed. <br>
+                    Eventually I deemed the sensor as unsalvagable.
+                </p>
+                <img src="images/scoby/scoby23.jpg" class="slide-image">
+                <pre class="code-block">
+                    <code>
+    const int pinA = A0; // Point A
+    const int pinB = A1; // Point B
+    float V_supply = 5.0; // Voltage supply to the bridge
+    
+    void setup() {
+        Serial.begin(9600);
+    }
+    
+    void loop() {
+        int rawA = analogRead(pinA); // Read voltage at point A
+        int rawB = analogRead(pinB); // Read voltage at point B
+        
+        // Convert ADC values to voltage
+        float V_A = rawA * (V_supply / 1023.0);
+        float V_B = rawB * (V_supply / 1023.0);
+        
+        // Calculate voltage difference
+        float V_AB = V_A - V_B;
+        
+        Serial.println(V_AB);
+    
+        delay(500); // Adjust as needed
+    } 
+                    </code>
+                </pre>
+
+            </section>
+        </section>
+        <!-- Back to Portfolio Button -->
+        <a href="../../index.html" class="back-link">Back to Portfolio</a>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 I.S Portfolio</p>
+    </footer>
+
+</body>
+</html>
