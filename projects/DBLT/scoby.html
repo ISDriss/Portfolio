@@ -221,11 +221,11 @@
             <h3>resistive heat sensor</h3>
             <section>
                 <p>
-                    Using a weatstone bridge calibrated for a measured resistance at ambiant temperature of the sensor at 2.4Ω and the following code,<br>
+                    Using a weatstone bridge calibrated for a measured resistance at ambiant temperature of the sensor at 2Ω and the following code,<br>
                     it would have been possible to have an effective sensor. <br>
                     However due to the copper wire being very thin combined with the necessity to burn the tip to make it conductive.  <br>
                     I was unfortunately unable to make it work, as any attempt to make the wire connect would lead to it being destroyed. <br>
-                    Eventually I deemed the sensor as unsalvagable.
+                    Eventually I deemed the sensor as unsalvagable. <br>
                 </p>
                 <img src="images/scoby/scoby23.jpg" class="slide-image">
                 <pre class="code-block">
@@ -255,9 +255,31 @@
     } 
                     </code>
                 </pre>
-
+            <p>
+                In theory, copper has a temperature coefficient of resistance (TCR) of about 0.0039 per °C. so a 2 Ω sensor will change resistance by: <br>
+                ΔR=R0×TCR×ΔT <br>
+                A 10°C change should result in a gain of : <br>
+                    ΔR=2×0.0039×10= 0.078 Ω <br>
+                assuming that the Intensity does not vary : <br>
+                - Ug = 3.3V <br>
+                - R2  = 5.1KΩ   <br>
+                - U = RI    <br>
+                - R1 = 2    <br>
+                - R1' = 2 + 0.078   <br>
+                <br>
+                => I = 3.3/5100 ~ 0.647mA <br>
+                <br>
+                = > ΔU1 = U1'- U1 <br>
+                    = (R1' * I )- (R1 * I) <br>
+                    = (R1 * I + 0.078 * I) - (R1 * I)	<br>
+                    = 0.078 * I <br>
+                    = 0.05 <br>
+                <br>
+                Therefore, The tension should gain 0.05 V/ 10°C <br>
+            </p>
             </section>
         </section>
+        <br>
         <!-- Back to Portfolio Button -->
         <a href="../../index.html" class="back-link">Back to Portfolio</a>
     </main>
