@@ -230,9 +230,13 @@
                 <img src="images/scoby/scoby23.jpg" class="slide-image">
                 <pre class="code-block">
                     <code>
+    // https://www.electronicshub.org/wheatstone-bridge/
+    // The measured resistance of the sensor at 23°C is 2 Ohm
+    // R1: sensor, R2 = 2 Ohm, R3 = R4 = 5.1 kOhm
+    
     const int pinA = A0; // Point A
     const int pinB = A1; // Point B
-    float V_supply = 5.0; // Voltage supply to the bridge
+    float V_supply = 3.3; // Voltage supply to the bridge
     
     void setup() {
         Serial.begin(9600);
@@ -249,10 +253,10 @@
         // Calculate voltage difference
         float V_AB = V_A - V_B;
         
-        Serial.println(V_AB);
+        Serial.println(V_AB,6);
     
         delay(500); // Adjust as needed
-    } 
+    }
                     </code>
                 </pre>
             <p>
