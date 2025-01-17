@@ -1,0 +1,1315 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Rapport et Résultats : Projet FPGA</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="17a68cd4-1387-802f-a839-da20e689d2f0" class="page sans"><header><h1 class="page-title">Rapport et Résultats : Projet FPGA</h1><p class="page-description"></p></header><div class="page-body"><h2 id="3dfa22f5-6d4f-491e-bade-45bb9879fbd0" class="">Introduction</h2><p id="a64c05e4-eb27-4157-8406-7adba23458c1" class="">Le projet FPGA réalisé cette semaine vise à développer une application vidéo interactive sur une plateforme FPGA, en utilisant une iCEstick équipée d&#x27;une puce Lattice HX1K. Ce travail inclut la création de signaux VGA pour générer des motifs visuels dynamiques et expérimenter différentes configurations de couleurs.</p><p id="6b6462dc-43af-4ca6-89dd-67a8667a2f39" class="">En lien le cours qui nous à permis de suivre ce HMAA autour du FPGA.</p><figure id="ec95d48f-409f-45a4-b35c-daa67aaca94f"><div class="source"><a href="FPGA_intro_v5_FINAL_compressed.pdf">FPGA intro v5 FINAL_compressed.pdf</a></div></figure><hr id="6c58a480-1adb-4401-8aea-f26dabf36cb5"/><p id="b6e6d1bb-9c3e-4e6f-8b9a-d4f69737bad9" class="">
+</p><h2 id="18f02861-7141-4f82-9ccc-11f78b9d921f" class="">Objectifs pédagogiques</h2><ul id="a1490eec-c55c-4ca4-a164-6fb0a0a48178" class="bulleted-list"><li style="list-style-type:disc"><strong>Compréhension des FPGAs</strong> : Étude de la programmation des circuits logiques configurables.</li></ul><ul id="8baf5c2b-f587-44b2-8c7d-7849ebce2f3a" class="bulleted-list"><li style="list-style-type:disc"><strong>Travail avec Verilog</strong> : Création et simulation de modules en langage Verilog.</li></ul><ul id="5ec65271-7bfb-4c67-8024-661376cf5e19" class="bulleted-list"><li style="list-style-type:disc"><strong>Mise en place d&#x27;une chaîne de développement FPGA</strong> : Utilisation de logiciels comme IceCube et Diamond Programmer.</li></ul><ul id="3ba1f94e-80d5-4786-8b7d-82ae9121179a" class="bulleted-list"><li style="list-style-type:disc"><strong>Affichage VGA</strong> : Génération et test de signaux vidéo pour une sortie visuelle sur un écran.</li></ul><hr id="c8341b2d-82ba-48a8-a332-e666940bb25a"/><h2 id="3ca141e9-07a5-43ee-ab75-9d5c5f2e9707" class="">Outils utilisés</h2><h3 id="842a5b03-544b-418f-8138-f516fb8c1d50" class="">Matériel</h3><ul id="3e85fb09-7000-4902-96cb-2fffeae2d57d" class="bulleted-list"><li style="list-style-type:disc"><strong>Carte FPGA</strong> : iCEstick avec une puce <strong><span style="border-bottom:0.05em solid">Lattice HX1K</span></strong>. </li></ul><ul id="45656a9a-bf7f-4156-a918-dfff46c96722" class="bulleted-list"><li style="list-style-type:disc"><strong>Câblage VGA</strong> : Connexion des sorties FPGA aux broches VGA.</li></ul><h3 id="09d5e09c-523b-4107-8f2d-63eb685368ed" class="">Logiciels</h3><ul id="33e2e1b7-192e-4fb8-8274-4a1f5ebb8b12" class="bulleted-list"><li style="list-style-type:disc"><strong>Lattice IceCube</strong> : Codage en Verilog et synthèse matérielle.</li></ul><ul id="2a9424ec-ffde-408f-a52b-ca53ffac8303" class="bulleted-list"><li style="list-style-type:disc"><strong>Diamond Programmer</strong> : Programmation de la carte FPGA avec le fichier binaire généré.</li></ul><ul id="de0fe454-8f57-4e97-b61d-76e2b990e68d" class="bulleted-list"><li style="list-style-type:disc"><strong>Oscilloscope</strong> : Vérification des signaux (notamment les signaux RGB).</li></ul><ul id="285f3af4-5907-4113-b721-9520282b3557" class="bulleted-list"><li style="list-style-type:disc"><strong>OBS Studio</strong> : Enregistrement des résultats affichés sur écran.</li></ul><p id="6f5e6dc4-b0e2-4a77-a78b-abe6207097af" class="">
+</p><h2 id="18f4bd40-76f8-45bb-b4b1-45e155b1d756" class="">Licence nécessaire pour utiliser ces applications</h2><p id="b725c7d1-535b-413a-9f7f-d1ca66f41db9" class="">Pour activer la licence aller sur : <a href="https://www.latticesemi.com/products/designsoftwareandip/fpgaandlds/icecube2">https://www.latticesemi.com/products/designsoftwareandip/fpgaandlds/icecube2</a></p><p id="db61e8a2-90a0-479d-8e70-14fa1ca051b4" class="">
+</p><p id="ccf80d11-4ba3-4ce7-81ef-6e010ba9bd41" class="">(PS: l’addresse Mac de son pc sera nécessaire pour le setup)</p><h2 id="4b3f523c-c3ff-47ae-a933-624928faa848" class="">Paramètres par application </h2><figure id="2a7911f7-3da3-4869-afc0-d10d9e9090c3" class="image"><a href="image.png"><img style="width:384px" src="image.png"/></a></figure><p id="76a0a605-1ac7-489d-afb4-7ec30c015367" class="">Les settings pour l’application Icecube pour utiliser notre icestick (dès la création du projet)</p><p id="e8ae3549-85c0-4d00-83bd-bc86929d6115" class="">Lien d’installation pour Icecube2 : <a href="https://www.latticesemi.com/products/designsoftwareandip/fpgaandlds/icecube2">https://www.latticesemi.com/products/designsoftwareandip/fpgaandlds/icecube2</a></p><figure id="62a9fb47-ca9a-46ae-9774-633d0ebfc358" class="image"><a href="WhatsApp_Image_2025-01-06__16.08.26_52f06fec.jpg"><img style="width:384px" src="WhatsApp_Image_2025-01-06__16.08.26_52f06fec.jpg"/></a></figure><p id="62db02db-2c29-44b2-9aa4-dc6d76ec5c09" class="">Les settings pour l’application Diamond Programmer </p><p id="87270596-1f40-4776-b23b-178e9e2e7f81" class="">Lien d’installation pour lattice diamond : <a href="https://www.latticesemi.com/latticediamond">https://www.latticesemi.com/latticediamond</a></p><hr id="91dbb7b7-d0dc-4c17-bea5-d27ce32e2374"/><h2 id="d7bfbe9e-eb45-4e44-8f11-cc84cc680d6c" class="">Étapes du projet</h2><h3 id="946fda3c-c1a5-415d-841f-087b96ae23ec" class="">Jour 1 : Introduction au FPGA et configuration de base</h3><ol type="1" id="cc55b7b4-22ad-4b52-aa65-dc3796cd8095" class="numbered-list" start="1"><li>Étude des <strong>principes fondamentaux des FPGAs</strong>.<ul id="83b31681-e94d-460e-a6f5-32e10a850292" class="bulleted-list"><li style="list-style-type:disc">Fonctionnement des <strong>blocs logiques configurables (CLBs)</strong>.</li></ul><ul id="39c0e1e8-bb99-4b52-9966-1bad4ed8fb50" class="bulleted-list"><li style="list-style-type:disc">Différence entre circuits combinatoires et séquentiels.</li></ul><ul id="27398fa5-84e8-444b-99d9-69fb6a8b79e4" class="bulleted-list"><li style="list-style-type:disc">Importance des langues de description matérielle (HDLs) comme Verilog.</li></ul></li></ol><ol type="1" id="22fe0be0-ca84-4aec-93c7-ee202df7a20f" class="numbered-list" start="2"><li>Mise en place de la chaîne d’outils.<ul id="4ac3fae0-95c6-49b6-876e-635fda3e407a" class="bulleted-list"><li style="list-style-type:disc">Téléchargement et installation des logiciels nécessaires.</li></ul><ul id="29340eee-bff8-40d1-9922-9c0786498801" class="bulleted-list"><li style="list-style-type:disc">Configuration de la carte iCEstick avec les broches appropriées.</li></ul></li></ol><ol type="1" id="c726bbe5-3579-46e3-91e9-5f5ed4606eb4" class="numbered-list" start="3"><li><strong>Premiers tests</strong> : Clignotement d’une LED pour valider le fonctionnement du FPGA.<ul id="b24f18ef-a872-4aab-aeb6-987c5809317c" class="bulleted-list"><li style="list-style-type:disc">Exemple de code simple :</li></ul></li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="53528f9d-af84-4afa-9a18-e835e0519c38" class="code"><code class="language-Verilog" style="white-space:pre-wrap;word-break:break-all">module top(
+  input wire clk,
+  output wire LED
+);
+  reg [23:0] counter;
+  assign LED = counter[23];
+
+  always @(posedge clk) begin
+    counter &lt;= counter + 1;
+  end
+endmodule
+</code></pre><p id="cad99ec7-fb9e-4fab-8532-a1641d93dc98" class=""><strong>Résultat</strong> : Une LED clignotant à une fréquence calculée à partir de l’horloge du FPGA.</p><p id="24e679a5-956e-44c8-9c9a-eff139c631d6" class="">
+</p><h3 id="e82f9f4d-dc36-45d5-ac78-1253d14701ad" class="">Jour 2 : Génération de signaux VGA</h3><ol type="1" id="5be5b3f0-3bfa-4b20-b374-10cd8c27591d" class="numbered-list" start="1"><li><strong>Implémentation des bases du signal VGA</strong>.<ul id="804331d5-d448-4af3-8988-d7928f4674f5" class="bulleted-list"><li style="list-style-type:disc">Génération des signaux H_SYNC et V_SYNC.</li></ul><ul id="1f72a3e2-c0c8-4784-951f-047fe7ee0487" class="bulleted-list"><li style="list-style-type:disc">Définition des résolutions de l’écran (640x480 pixels).</li></ul></li></ol><ol type="1" id="4dfa9198-effb-47b5-9008-58b126e87f06" class="numbered-list" start="2"><li><strong>Code utilisé</strong> :</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3f655ced-840f-4769-a5d1-24369b893455" class="code"><code class="language-Verilog" style="white-space:pre-wrap;word-break:break-all">module vga_sync(
+  input wire clk_in,
+  input wire reset,
+  output wire h_sync,
+  output wire v_sync,
+  output wire clk_sys,
+  output wire display_en,
+  output wire [9:0] h_count,
+  output wire [9:0] v_count
+);
+  // Implémentation des signaux VGA
+endmodule
+</code></pre><p id="723dbf59-73c0-4f09-9b18-b5039a1a2d54" class=""><strong>Résultat</strong> : Affichage d’un écran noir avec des signaux synchronisés.</p><div id="3e0a8787-3658-4be8-b1c5-6e00d35e8fc7" class="column-list"><div id="c275588b-e77e-4dd4-b9af-201af006f50c" style="width:50%" class="column"><figure id="18a1cb93-fc8f-4be2-ac95-ecf3759907dc" class="image"><a href="PHOTO-2025-01-07-20-38-59.jpg"><img style="width:336px" src="PHOTO-2025-01-07-20-38-59.jpg"/></a></figure><p id="157f389b-1f95-49be-bacd-221a659f46e6" class="">
+</p></div><div id="5148d80a-633f-4807-a167-00c9ce1b84d3" style="width:50%" class="column"><p id="12a0d054-d412-4e27-8e41-6dae28a81557" class="">Utilisation de l’oscilloscope pour vérifier les signaux.</p><figure id="4cf37898-37a3-4891-b965-0f18e4412a01" class="image"><a href="PHOTO-2025-01-08-15-48-18.jpg"><img style="width:384px" src="PHOTO-2025-01-08-15-48-18.jpg"/></a></figure><p id="8466b155-6a99-448b-a1be-dfc48cbe9496" class="">
+</p></div></div><p id="d0ac5062-ff8a-442e-bcce-7b352f5ba9b9" class="">Pour la suite nous nous sommes inspirés du github suivant: <a href="https://github.com/imuguruza/alhambra_II_test">https://github.com/imuguruza/alhambra_II_test</a><br/>Et nous avons utiliser ces 3 fichiers la pour la suite (seul un seul est modifié mais les 2 autres sont nécessaire et doivent être mis lors de la création du projet sur Icecube):<br/></p><ul id="db53d09c-a488-4b0e-a02f-445503f56bc9" class="bulleted-list"><li style="list-style-type:disc">VGA_sync.v</li></ul><ul id="a360e45d-6ed6-462a-9a53-0178e390b713" class="bulleted-list"><li style="list-style-type:disc">pll.v</li></ul><ul id="47fcab89-9aaf-48ba-babb-62aeac6c5bb9" class="bulleted-list"><li style="list-style-type:disc">vga_sync_tet.v</li></ul><h3 id="d126764d-374f-41e2-a637-ccd5cc3a9196" class="">Jour 3 : Animation et couleurs dynamiques</h3><ol type="1" id="21464185-ef5b-4d9b-919d-bcb30d201b4a" class="numbered-list" start="1"><li>Ajout de <strong>couleurs RGB</strong>.<ul id="e97aa443-a48f-4446-95e8-49e5b72aeb7c" class="bulleted-list"><li style="list-style-type:disc">Utilisation de 3 bits pour chaque couleur (R, G, B).</li></ul><ul id="98be5c64-7628-4bb7-bfd8-ef8d5844ad5a" class="bulleted-list"><li style="list-style-type:disc">Génération de motifs colorés basés sur les coordonnées des pixels (h_count, v_count).</li></ul></li></ol><ol type="1" id="af381db2-5e29-4dd2-a582-4e83a0932604" class="numbered-list" start="2"><li><strong>Code modifié</strong> :</li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9b002bf4-fd9b-449e-95ed-a4a6398ff020" class="code"><code class="language-Verilog" style="white-space:pre-wrap;word-break:break-all">always @(posedge clk_sys) begin
+  if (display_en) begin
+    r0 &lt;= h_count[7];
+    r1 &lt;= h_count[6];
+    r2 &lt;= h_count[5];
+    g0 &lt;= v_count[7];
+    g1 &lt;= v_count[6];
+    g2 &lt;= v_count[5];
+    b0 &lt;= h_count[4];
+    b1 &lt;= v_count[4];
+    b2 &lt;= (h_count[3] ^ v_count[3]);
+  end else begin
+    r0 &lt;= 0; r1 &lt;= 0; r2 &lt;= 0;
+    g0 &lt;= 0; g1 &lt;= 0; g2 &lt;= 0;
+    b0 &lt;= 0; b1 &lt;= 0; b2 &lt;= 0;
+  end
+end
+</code></pre><p id="b091e7b6-5882-4c1b-9f3b-0691196cba0f" class=""><strong>Résultat</strong> : Motifs colorés statiques sur l’écran.</p><figure id="016e971f-33af-4b81-bc13-56bb3e7ffbbf" class="image"><a href="WhatsApp_Image_2025-01-10_at_15.58.46.jpeg"><img style="width:707.9962768554688px" src="WhatsApp_Image_2025-01-10_at_15.58.46.jpeg"/></a></figure><ol type="1" id="1caba95b-fea4-42c4-bd6e-6ca44a04fa94" class="numbered-list" start="1"><li>Développement d’une <strong>animation circulaire</strong>.<ul id="adbd23d7-f66d-4242-9dc7-bc8a18e3c4bd" class="bulleted-list"><li style="list-style-type:disc">Génération de cercles dynamiques changeant de taille au fil du temps.</li></ul></li></ol><figure id="5cb1f32d-5494-410f-93b4-69fb235b54ad"><div class="source"><a href="WhatsApp_Video_2025-01-10_at_15.58.44.mp4">https://prod-files-secure.s3.us-west-2.amazonaws.com/c71ca104-c48d-4b97-a1c7-298bd65cf570/6b5a6ac8-9f34-4789-ad43-8dbaf2596ccb/WhatsApp_Video_2025-01-10_at_15.58.44.mp4</a></div></figure><hr id="b1a887d7-f876-4dab-806c-d7ddeec56132"/><h2 id="00d6312c-18dd-4b40-a3c9-fffe8174c798" class="">Résultats finaux</h2><ol type="1" id="eade9514-f690-4cd2-a647-fa8506fa5136" class="numbered-list" start="1"><li>Configuration complète pour une sortie VGA.<ul id="921fb3b5-17a4-446b-b17f-023ecea1b5f3" class="bulleted-list"><li style="list-style-type:disc">Résolution : 640x480 pixels.</li></ul><ul id="b4acbb83-4a98-46ed-87f9-c30c8bb2cacc" class="bulleted-list"><li style="list-style-type:disc">Synchronisation des signaux : H_SYNC et V_SYNC fonctionnels.</li></ul></li></ol><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e178b44b-8c41-49a8-8a5e-a2e8be3b239d" class="code"><code class="language-JavaScript">module vga_sync_test(
+    input wire clk_in,
+    input wire reset,
+    output reg r0,
+    output reg r1,
+    output reg r2,
+    output reg b0,
+    output reg b1,
+    output reg b2,
+    output reg g0,
+    output reg g1,
+    output reg g2,
+    output wire h_sync,
+    output wire v_sync,
+    output wire led,
+    output wire locked_led
+  );
+
+reg [23:0]counter;
+wire clk_sys;
+wire display_en;
+//reg [9:0] h_count;
+wire [9:0] h_count;
+//reg [9:0] v_count;
+wire [9:0] v_count;
+assign  led = clk_sys;
+
+localparam  h_pixel_max = 640;
+localparam  v_pixel_max = 480;
+localparam  h_pixel_half = 320;
+localparam  v_pixel_half = 240;
+genvar center_x = 0;
+genvar center_y = 0;
+genvar radius = 50;
+genvar circle = 0;
+
+//Check if we can create RGB colors
+always @(posedge clk_sys) begin
+  counter &lt;= counter + 1;
+
+  if (display_en) begin
+    // Générer des couleurs basées sur les coordonnées des pixels
+    r0 &lt;= h_count[7];
+    r1 &lt;= h_count[6];
+    r2 &lt;= h_count[5];
+    g0 &lt;= v_count[7];
+    g1 &lt;= v_count[6];
+    g2 &lt;= v_count[5];
+    b0 &lt;= h_count[4];
+    b1 &lt;= v_count[4];
+    b2 &lt;= (h_count[3] ^ v_count[3]);
+  end else begin
+    // Éteindre les couleurs en dehors de la zone visible
+    r0 &lt;= 1&#x27;b0;
+    r1 &lt;= 1&#x27;b0;
+    r2 &lt;= 1&#x27;b0;
+    g0 &lt;= 1&#x27;b0;
+    g1 &lt;= 1&#x27;b0;
+    g2 &lt;= 1&#x27;b0;
+    b0 &lt;= 1&#x27;b0;
+    b1 &lt;= 1&#x27;b0;
+    b2 &lt;= 1&#x27;b0;
+  end
+end
+
+ 
+
+vga_sync vga_s(
+      .clk_in(clk_in),         //12MHz clock input
+      .reset(reset),           // RST assigned to SW1
+      .h_sync(h_sync),
+      .v_sync(v_sync),
+      .clk_sys(clk_sys),       //25.125 MHz clock generated by PLL
+      .h_count(h_count),
+      .v_count(v_count),
+      .display_en(display_en), // &#x27;1&#x27; =&gt; pixel region
+      .locked(locked_led)      // PLL signal, &#x27;1&#x27; =&gt; OK
+      );
+
+endmodule</code></pre><p id="2cc758f7-f63a-404e-ab9b-f8c01c26ba1b" class="">avec ce setting de pins: </p><p id="c7b0ea09-fddc-479a-aee1-a7260eab629d" class="">
+</p><figure id="bb85171d-231b-47fc-85f1-31ac2b19f5c5" class="image"><a href="PHOTO-2025-01-10-18-22-35.jpg"><img style="width:651.984375px" src="PHOTO-2025-01-10-18-22-35.jpg"/></a></figure><p id="469f82c4-f48e-4a6e-bf11-00449c9542c7" class="">et ce circuit:</p><p id="792fbc87-8e4a-4726-a7a2-a037b97bd965" class="">
+</p><figure id="645b0fcf-4380-4035-b3a1-d7179fd47ff4" class="image"><a href="WhatsApp_Image_2025-01-10_at_15.58.46_(1).jpeg"><img style="width:707.9962768554688px" src="WhatsApp_Image_2025-01-10_at_15.58.46_(1).jpeg"/></a></figure><ol type="1" id="b1b8a628-0563-4f07-b2b7-dfefbca65d08" class="numbered-list" start="1"><li>Génération et affichage de couleurs dynamiques.<ul id="750caf3e-96d2-4cd7-be02-4b89709cda56" class="bulleted-list"><li style="list-style-type:disc">Utilisation des 9 bits RGB pour afficher 512 couleurs.</li></ul></li></ol><hr id="c8af38db-ee7f-4237-904d-f23a684257d4"/><h3 id="d6e667a5-2f2e-4a47-a970-60823cf93f8f" class=""><strong>Détails supplémentaires sur la génération des couleurs : DAC R2R</strong></h3><p id="152d5c72-45c5-4b6e-89fd-5cd32a735f54" class="">Dans ce projet, la génération de couleurs pour la sortie VGA repose sur un <strong>convertisseur numérique-analogique (DAC) R2R</strong>, une méthode simple et efficace pour produire des niveaux de tension analogiques à partir de signaux numériques. Voici les principales étapes du fonctionnement :</p><figure id="18fc8955-af57-4630-b894-391ae1003dfc" class="image"><a href="PHOTO-2025-01-10-18-24-36.jpg"><img style="width:651.9921875px" src="PHOTO-2025-01-10-18-24-36.jpg"/></a></figure><ol type="1" id="09193e7f-201e-4bf1-80ab-d743369493ca" class="numbered-list" start="1"><li><strong>Réseau de résistances R2R</strong> :<ul id="6485a971-d215-4bc5-8d17-dbdc2a32125b" class="bulleted-list"><li style="list-style-type:disc">Le DAC utilise une combinaison précise de résistances avec un ratio R et 2R pour produire une sortie analogique en escalier à partir d&#x27;une entrée numérique.<p id="341f7435-3b56-48bc-b803-9bceb33f61ff" class="">RR</p><p id="0fbfcb2e-62bb-4e7c-9323-9fe4c4b4fb3c" class="">2R2R</p></li></ul><ul id="8441b682-1d5d-43ca-8c56-65d49a2d8a42" class="bulleted-list"><li style="list-style-type:disc">Pour cette implémentation :<ul id="fe61275a-2503-4f40-b46e-dcef44b29693" class="bulleted-list"><li style="list-style-type:circle">R=51 Ω</li></ul><ul id="8b21c152-f64e-4df2-a6f9-0b637c85d774" class="bulleted-list"><li style="list-style-type:circle">2R=100 Ω</li></ul></li></ul></li></ol><ol type="1" id="77da2875-a12c-4e3d-bc41-64f9ea69fc9d" class="numbered-list" start="2"><li><strong>Conversion numérique-analogique</strong> :<ul id="15d769ba-c9c0-4891-ba61-47ca75de3880" class="bulleted-list"><li style="list-style-type:disc">Le signal RGB sur 9 bits (3 bits pour chaque composant : rouge, vert et bleu) est transmis au DAC R2R.</li></ul><ul id="818a00f8-5209-4b3d-897c-5b9615cbb8e3" class="bulleted-list"><li style="list-style-type:disc">Chaque bit a une pondération spécifique dans la tension analogique finale :<ul id="94ec1e4f-4007-46c5-af71-38cecacf6314" class="bulleted-list"><li style="list-style-type:circle">Le bit de poids fort (MSB) contribue le plus à la tension.</li></ul><ul id="3041f541-e63f-4263-815d-d3a45635f93c" class="bulleted-list"><li style="list-style-type:circle">Le bit de poids faible (LSB) ajoute une contribution minimale.</li></ul></li></ul></li></ol><ol type="1" id="a1f3a694-bf2a-4a93-a0f5-35025572f359" class="numbered-list" start="3"><li><strong>Profondeur de couleur</strong> :<ul id="abc80482-c8ad-48ad-8d81-b157a3196e8a" class="bulleted-list"><li style="list-style-type:disc">Avec 9 bits, le système prend en charge 2^9=512 couleurs distinctes. Ceci est obtenu en ajustant les intensités des composants rouge, vert et bleu via des niveaux de tension analogique.<p id="e8c018cf-ba2e-4a14-a1c7-b95f00bd54d1" class="">2^9 = 512</p></li></ul></li></ol><ol type="1" id="84d1de74-7c1e-4dad-a91f-5fcf71d274c2" class="numbered-list" start="4"><li><strong>Mise en œuvre pratique</strong> :<ul id="f9f3e336-0ad2-4fdd-bc78-a873dde07faf" class="bulleted-list"><li style="list-style-type:disc">Le DAC R2R est connecté aux broches VGA de l’FPGA via des résistances soigneusement sélectionnées.</li></ul><ul id="e8f3f713-cac4-42fb-a97f-ab4f414f1ffd" class="bulleted-list"><li style="list-style-type:disc">Des tests avec différentes valeurs de résistance (par exemple, 2kΩ et 15kΩ) ont permis d’assurer l’intégrité du signal et la compatibilité avec la norme VGA.<p id="6f4404ff-3f32-413a-abd8-bf63ca50dda0" class="">2 kΩ</p><p id="ce73b1ab-e370-4b43-880e-97fbf95198fd" class="">15 kΩ</p></li></ul></li></ol><hr id="bbbb740f-0ebe-4d15-bdb6-55920075eac9"/><h3 id="4318788a-594b-45fa-9471-5ed410cc7863" class=""><strong>Analyse et résultats</strong></h3><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="75dc3d1d-fa85-4f28-b308-f3df58dc74e1" class="code"><code class="language-JavaScript">module vga_pattern_generator(
+    input wire clk_in,
+    input wire reset,
+    output reg r0,
+    output reg r1,
+    output reg r2,
+    output reg g0,
+    output reg g1,
+    output reg g2,
+    output reg b0,
+    output reg b1,
+    output reg b2,
+    output wire h_sync,
+    output wire v_sync,
+    output wire locked_led
+);
+	reg [2:0] PATTERN;
+    reg [23:0] frame_counter; // Counter for frame timing
+    wire clk_sys;
+    wire display_en;
+    wire [9:0] h_count;
+    wire [9:0] v_count;
+
+    // Parameters for VGA resolution
+    localparam H_MAX = 640;
+    localparam V_MAX = 480;
+
+    // Pattern selector
+    reg [2:0] pattern_selector;
+
+    // VGA synchronization module instantiation
+    vga_sync vga_s (
+        .clk_in(clk_in),
+        .reset(reset),
+        .h_sync(h_sync),
+        .v_sync(v_sync),
+        .clk_sys(clk_sys),
+        .h_count(h_count),
+        .v_count(v_count),
+        .display_en(display_en),
+        .locked(locked_led)
+    );
+
+    // Pattern generation
+    always @(posedge clk_sys or posedge reset) begin
+        if (reset) begin
+            frame_counter &lt;= 0;
+            pattern_selector &lt;= 0;
+        end else begin
+            frame_counter &lt;= frame_counter + 1;
+
+            // Change pattern every ~2 seconds (adjust as needed)
+            if (frame_counter == 24&#x27;d50000000) begin
+                frame_counter &lt;= 0;
+                pattern_selector &lt;= pattern_selector + 1;
+            end
+        end
+    end
+
+    // Generate RGB signals based on the selected pattern
+    always @(posedge clk_sys) begin
+        if (display_en) begin
+            case (pattern_selector)
+                3&#x27;d0: begin // Gradient pattern
+                    r0 &lt;= h_count[7];
+                    r1 &lt;= h_count[6];
+                    r2 &lt;= h_count[5];
+                    g0 &lt;= v_count[7];
+                    g1 &lt;= v_count[6];
+                    g2 &lt;= v_count[5];
+                    b0 &lt;= h_count[4];
+                    b1 &lt;= v_count[4];
+                    b2 &lt;= h_count[3] ^ v_count[3];
+                end
+
+                3&#x27;d1: begin // Checkerboard pattern
+                    r0 &lt;= (h_count[6] ^ v_count[6]);
+                    r1 &lt;= (h_count[5] ^ v_count[5]);
+                    r2 &lt;= (h_count[4] ^ v_count[4]);
+                    g0 &lt;= 0;
+                    g1 &lt;= 0;
+                    g2 &lt;= 0;
+                    b0 &lt;= 0;
+                    b1 &lt;= 0;
+                    b2 &lt;= 0;
+                end
+
+                3&#x27;d2: begin // Circle pattern
+                    if (((h_count - 320)*(h_count - 320) + (v_count - 240)*(v_count - 240)) &lt; 10000) begin
+                        r0 &lt;= 1;
+                        r1 &lt;= 1;
+                        r2 &lt;= 1;
+                        g0 &lt;= 1;
+                        g1 &lt;= 1;
+                        g2 &lt;= 1;
+                        b0 &lt;= 1;
+                        b1 &lt;= 1;
+                        b2 &lt;= 1;
+                    end else begin
+                        r0 &lt;= 0;
+                        r1 &lt;= 0;
+                        r2 &lt;= 0;
+                        g0 &lt;= 0;
+                        g1 &lt;= 0;
+                        g2 &lt;= 0;
+                        b0 &lt;= 0;
+                        b1 &lt;= 0;
+                        b2 &lt;= 0;
+                    end
+                end
+
+                3&#x27;d3: begin // Wave pattern
+                    r0 &lt;= (h_count[5] ^ v_count[6]);
+                    r1 &lt;= (h_count[6] ^ v_count[7]);
+                    r2 &lt;= (h_count[7] ^ v_count[5]);
+                    g0 &lt;= v_count[5];
+                    g1 &lt;= v_count[6];
+                    g2 &lt;= v_count[7];
+                    b0 &lt;= h_count[5];
+                    b1 &lt;= h_count[6];
+                    b2 &lt;= h_count[7];
+                end
+
+                3&#x27;d4: begin // Moving stripes
+                    r0 &lt;= h_count[5] ^ frame_counter[23];
+                    r1 &lt;= h_count[6] ^ frame_counter[22];
+                    r2 &lt;= h_count[7] ^ frame_counter[21];
+                    g0 &lt;= v_count[5] ^ frame_counter[20];
+                    g1 &lt;= v_count[6] ^ frame_counter[19];
+                    g2 &lt;= v_count[7] ^ frame_counter[18];
+                    b0 &lt;= frame_counter[17];
+                    b1 &lt;= frame_counter[16];
+                    b2 &lt;= frame_counter[15];
+                end
+
+                default: begin // Default:  blue screen
+                    r0 &lt;= 0;
+                    r1 &lt;= 0;
+                    r2 &lt;= 0;
+                    g0 &lt;= 0;
+                    g1 &lt;= 0;
+                    g2 &lt;= 0;
+                    b0 &lt;= 1;
+                    b1 &lt;= 1;
+                    b2 &lt;= 1;
+                end
+            endcase
+        end else begin
+            r0 &lt;= 0;
+            r1 &lt;= 0;
+            r2 &lt;= 0;
+            g0 &lt;= 0;
+            g1 &lt;= 0;
+            g2 &lt;= 0;
+            b0 &lt;= 0;
+            b1 &lt;= 0;
+            b2 &lt;= 0;
+        end
+    end
+
+endmodule</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e694bcf1-1ff1-42bb-85f2-c130eec910c2" class="code"><code class="language-JavaScript">module vga_wave_effect(
+    input wire clk_in,
+    input wire reset,
+    input wire btn_up,      // Button input for moving circle up
+    input wire btn_down,    // Button input for moving circle down
+    input wire btn_left,    // Button input for moving circle left
+    input wire btn_right,   // Button input for moving circle right
+    output reg r0,
+    output reg r1,
+    output reg r2,
+    output reg b0,
+    output reg b1,
+    output reg b2,
+    output reg g0,
+    output reg g1,
+    output reg g2,
+    output wire h_sync,
+    output wire v_sync,
+    output wire led,
+    output wire locked_led
+);
+
+reg [23:0] counter;
+wire clk_sys;
+wire display_en;
+wire [9:0] h_count;
+wire [9:0] v_count;
+assign led = clk_sys;
+        reg signed [9:0] dx;
+        reg signed [9:0] dy;
+        reg signed [19:0] distance; 
+
+localparam h_pixel_max = 640;
+localparam v_pixel_max = 480;
+localparam center_x = 320;
+localparam center_y = 240;
+
+    // VGA synchronization module instantiation
+    vga_sync vga_s (
+        .clk_in(clk_in),
+        .reset(reset),
+        .h_sync(h_sync),
+        .v_sync(v_sync),
+        .clk_sys(clk_sys),
+        .h_count(h_count),
+        .v_count(v_count),
+        .display_en(display_en),
+        .locked(locked_led)
+    );
+
+
+// Animation counter for wave expansion
+reg [7:0] wave_time;
+
+always @(posedge clk_sys) begin
+    if (reset) begin
+        wave_time &lt;= 0;
+    end else begin
+        wave_time &lt;= wave_time + 1;
+    end
+end
+
+always @(posedge clk_sys) begin
+    if (display_en) begin
+        // Utilisez des registres pour dx, dy et distance au lieu d&#x27;integers
+
+
+        dx = h_count - center_x;
+        dy = v_count - center_y;
+        distance = (dx * dx + dy * dy) &gt;&gt; 8;
+
+        if ((distance - wave_time) % 20 &lt; 10) begin
+            r0 &lt;= 1;
+            g1 &lt;= 1;
+            b2 &lt;= 1;
+        end else begin
+            r0 &lt;= 0;
+            g1 &lt;= 0;
+            b2 &lt;= 0;
+        end
+    end else begin
+        r0 &lt;= 0; r1 &lt;= 0; r2 &lt;= 0;
+        g0 &lt;= 0; g1 &lt;= 0; g2 &lt;= 0;
+        b0 &lt;= 0; b1 &lt;= 0; b2 &lt;= 0;
+    end
+end
+
+
+
+endmodule</code></pre><p id="4b2140fd-e905-43d9-af99-808bead4c352" class="">avec ce code nous obtenons cela: </p><p id="3f848360-3f6c-4f99-8d73-4e7c46629173" class="">
+</p><figure id="578484d4-39df-4e21-9a1f-207dfb3070a8"><div class="source"><a href="VIDEO-2025-01-10-18-31-31.mp4">https://prod-files-secure.s3.us-west-2.amazonaws.com/c71ca104-c48d-4b97-a1c7-298bd65cf570/c232d40a-bcc3-447d-8db7-e04ccc59b30a/VIDEO-2025-01-10-18-31-31.mp4</a></div></figure><p id="1495c184-9e02-45af-9091-9b80fd2ff717" class="">puis avec celui-ci :</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ea119f91-3325-4af6-bedd-0d1688473e0e" class="code"><code class="language-JavaScript">module vga_pattern_generator(
+    input wire clk_in,
+    input wire reset,
+    output reg r0,
+    output reg r1,
+    output reg r2,
+    output reg g0,
+    output reg g1,
+    output reg g2,
+    output reg b0,
+    output reg b1,
+    output reg b2,
+    output wire h_sync,
+    output wire v_sync,
+    output wire locked_led
+);
+reg signed [9:0] dx;
+    reg signed [9:0] dy;
+    reg signed [19:0] distance;
+
+    reg [23:0] frame_counter;
+    wire clk_sys;
+    wire display_en;
+    wire [9:0] h_count;
+    wire [9:0] v_count;
+
+    localparam H_MAX = 640;
+    localparam V_MAX = 480;
+// Positions aléatoires et temporisation
+    reg [9:0] random_x;
+    reg [9:0] random_y;
+    reg [7:0] wave_time;
+
+    // VGA synchronization module
+    vga_sync vga_s (
+        .clk_in(clk_in),
+        .reset(reset),
+        .h_sync(h_sync),
+        .v_sync(v_sync),
+        .clk_sys(clk_sys),
+        .h_count(h_count),
+        .v_count(v_count),
+        .display_en(display_en),
+        .locked(locked_led)
+    );
+
+    // Génération des positions aléatoires basées sur l&#x27;horloge
+    always @(posedge clk_sys or posedge reset) begin
+        if (reset) begin
+            frame_counter &lt;= 0;
+            wave_time &lt;= 0;
+            random_x &lt;= H_MAX / 2;
+            random_y &lt;= V_MAX / 2;
+        end else begin
+            frame_counter &lt;= frame_counter + 1;
+            wave_time &lt;= wave_time + 1;
+
+            // Mise à jour périodique des positions aléatoires basées sur l&#x27;horloge
+            if (frame_counter % 24&#x27;d100000 == 0) begin
+                random_x &lt;= (frame_counter[15:6]) % H_MAX;
+                random_y &lt;= (frame_counter[23:14]) % V_MAX;
+            end
+        end
+    end
+
+    // Génération de l&#x27;effet de l&#x27;onde
+    always @(posedge clk_sys) begin
+        if (display_en) begin
+            // Calcul de la distance au centre de l&#x27;onde
+            dx = h_count - random_x;
+            dy = v_count - random_y;
+            distance = (dx * dx + dy * dy) &gt;&gt; 8;
+
+            // Onde circulaire propagée avec centre changeant
+            if ((distance - wave_time) % 20 &lt; 10) begin
+                r0 &lt;= 1;
+                g1 &lt;= 1;
+                b2 &lt;= 1;
+            end else begin
+                r0 &lt;= 0;
+                g1 &lt;= 0;
+                b2 &lt;= 0;
+            end
+        end else begin
+            {r0, r1, r2, g0, g1, g2, b0, b1, b2} &lt;= 9&#x27;b0;
+        end
+    end
+
+endmodule</code></pre><p id="1541b46f-1df4-4343-8b7e-7d53ffb8caf5" class="">nous tentons de calculer &amp; afficher une fractale</p><p id="cfbd2ca3-a12b-4ce6-8d7e-f4a058eebd5f" class="">
+</p><figure id="aabf5bdd-8c8e-4ac3-a76b-280812dc3f41"><div class="source"><a href="VIDEO-2025-01-10-18-31-31%201.mp4">https://prod-files-secure.s3.us-west-2.amazonaws.com/c71ca104-c48d-4b97-a1c7-298bd65cf570/17e89263-b69c-480a-ae6d-13ea52015114/VIDEO-2025-01-10-18-31-31.mp4</a></div></figure><p id="3067ba6c-f431-4d97-8077-1ddb892fdab0" class="">Ce code génère un motif d&#x27;onde circulaire pour un affichage VGA en calculant les coordonnées des pixels à afficher à l&#x27;aide d&#x27;un module de synchronisation (vga_sync). Les positions aléatoires du centre de l&#x27;onde changent périodiquement, et les couleurs sont activées selon la distance entre les pixels et ce centre. L&#x27;affichage alterne les couleurs pour créer un effet visuel animé basé sur le temps (wave_time)</p><figure id="63a1d40e-4a0d-4b43-a34e-2db6c628629a" class="image"><a href="PHOTO-2025-01-10-19-01-37.jpg"><img style="width:652px" src="PHOTO-2025-01-10-19-01-37.jpg"/></a></figure><figure id="b84fa3b4-105a-4daf-8fcd-76e307584064" class="image"><a href="PHOTO-2025-01-10-19-01-37%201.jpg"><img style="width:652px" src="PHOTO-2025-01-10-19-01-37%201.jpg"/></a></figure><figure id="d13a5cc2-7c78-4056-942e-73fa280cae37" class="image"><a href="PHOTO-2025-01-10-19-01-37%202.jpg"><img style="width:651.9921875px" src="PHOTO-2025-01-10-19-01-37%202.jpg"/></a></figure><figure id="ae6baac4-b009-401e-ba39-f72eb6b8eda1" class="image"><a href="PHOTO-2025-01-10-19-01-37%203.jpg"><img style="width:652px" src="PHOTO-2025-01-10-19-01-37%203.jpg"/></a></figure><ol type="1" id="2fe15095-f91e-4609-abfd-3d682fb042c8" class="numbered-list" start="1"><li><strong>Vérification des signaux avec un oscilloscope</strong> :<ul id="0dacaa2d-e166-454a-8f87-29a36a8c0066" class="bulleted-list"><li style="list-style-type:disc"><strong>Photos des relevés oscilloscope</strong> :<ul id="377fb965-3513-45ba-893e-5c176d4afd4c" class="bulleted-list"><li style="list-style-type:circle">L’oscillogramme confirme la génération des signaux H_SYNC et V_SYNC, garantissant une synchronisation correcte avec l’écran VGA.</li></ul><ul id="f11f689d-02ad-44a5-bc36-976cb17e2e4d" class="bulleted-list"><li style="list-style-type:circle">Les signaux RGB affichent des motifs pulsés correspondant aux entrées numériques, validant ainsi le fonctionnement du DAC R2R.</li></ul></li></ul></li></ol><p id="53444058-2461-445c-9c75-bdfaa6fd2127" class="">+</p><ol type="1" id="dab1c3d9-9dc2-430e-8562-2cc4dccf00a8" class="numbered-list" start="1"><li><strong>Motifs dynamiques et animations</strong> :<ul id="5ea28c9e-1c4f-4c11-a114-222d466898cc" class="bulleted-list"><li style="list-style-type:disc"><strong>Motifs en dégradé et damier</strong> :<ul id="27ac6f70-f787-49e9-8828-9a8b6e11e589" class="bulleted-list"><li style="list-style-type:circle">Comme illustré dans les images, les valeurs RGB varient spatialement sur l’écran, générant des dégradés fluides ou des blocs distincts en damier.</li></ul></li></ul><ul id="c0643bb5-15bf-4ba7-8a20-0766ddff20eb" class="bulleted-list"><li style="list-style-type:disc"><strong>Animations circulaires</strong> :<ul id="daeae7ab-2217-42f1-a6ad-3caf660a9bca" class="bulleted-list"><li style="list-style-type:circle">Les motifs circulaires dynamiques montrent des changements de couleur et de position en fonction du temps. Ces effets sont réalisés par des calculs de coordonnées et une arithmétique modulaire.</li></ul></li></ul></li></ol><ol type="1" id="d3d8e987-edc3-4c0f-9290-b8c655e2a646" class="numbered-list" start="2"><li><strong>Effet d’onde</strong> :<ul id="3c820c0f-03df-44d9-bf4c-267b00967b4a" class="bulleted-list"><li style="list-style-type:disc"><strong>Propagation circulaire</strong> :<ul id="bb1d87f2-2f1b-45a2-ae4f-826dfba9177a" class="bulleted-list"><li style="list-style-type:circle">L’effet d’onde se propage visuellement depuis un point central. Cela est implémenté en calculant la distance des pixels au centre et en mettant à jour le front d’onde à l’aide d’un compteur de temps.</li></ul><ul id="b0cb039e-c0fb-4682-8c03-da04eb29d896" class="bulleted-list"><li style="list-style-type:circle">Les centres aléatoires des ondes ajoutent de la variation et maintiennent l’intérêt visuel.</li></ul></li></ul></li></ol><hr id="c102f7bc-a3e6-4132-aa17-c9e060fc1514"/><h3 id="31dd4c9d-dacd-4efe-b5da-eaaf2dc8c132" class=""><strong>Défis et limitations</strong></h3><ul id="cbd9b68d-cfd1-4a73-a71f-60d47f9feda5" class="bulleted-list"><li style="list-style-type:disc"><strong>Contraintes de mémoire</strong> :<ul id="6dbdc306-5d4b-4539-8348-4524097979b9" class="bulleted-list"><li style="list-style-type:circle">Les tentatives de visualisation de l’ensemble de Mandelbrot ont été limitées par la capacité de BRAM embarquée (1 280 bits contre les 2,7 Mbits nécessaires). (En dessous le code)</li></ul></li></ul><ul id="bd69dc5c-45ba-4b8c-abb3-5d3f50bef614" class="bulleted-list"><li style="list-style-type:disc"><strong>Intégrité du signal</strong> :<ul id="a1ab6e6f-9a4d-4b5e-8eec-026d4847affd" class="bulleted-list"><li style="list-style-type:circle">La sélection correcte des résistances et la configuration des broches ont été cruciales pour éviter la dégradation du signal, en particulier pour les signaux VGA haute vitesse.</li></ul></li></ul><hr id="3c5175d5-f04f-46c3-9e17-dd58767c844e"/><h2 id="be33000f-535c-4a00-86bf-903fcdd32c97" class="">Annexe</h2><p id="7e8c275e-dc31-4048-bef6-8a9ccb85a7f8" class="">Tentative de Code de Mandelbrot  (en plus des 3 fichiers de bases): </p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5d9dc3a6-cb56-46d8-bf69-29283abf3636" class="code"><code class="language-Verilog">module mandelbrot(
+    input wire clk_in,
+    input wire reset,
+    input wire set,
+    input wire [9:0] pos_X,  // Assuming 10-bit input for horizontal position
+    input wire [9:0] pos_Y,  // Assuming 10-bit input for vertical position
+    output reg found,
+    output reg [8:0] palette  // 9-bit color palette index
+);
+
+    // Parameters for screen dimensions and scaling
+    localparam signed [31:0] SCALE = 32&#x27;h01000000; // Fixed-point scaling (1.0)
+    localparam signed [31:0] X_MIN = -2 * SCALE;  // Min X (-2.0)
+    localparam signed [31:0] X_MAX =  1 * SCALE;  // Max X (1.0)
+    localparam signed [31:0] Y_MIN = -1 * SCALE;  // Min Y (-1.0)
+    localparam signed [31:0] Y_MAX =  1 * SCALE;  // Max Y (1.0)
+
+    localparam  h_pixel_max = 640;
+    localparam  v_pixel_max = 480;
+    // Registers for Mandelbrot calculation
+    reg signed [31:0] Zr, Zi, Cr, Ci, Zr_next, Zi_next;
+    reg [9:0] count;  // Counter for iterations
+
+    // State machine control
+    always @(posedge clk_in ) begin //or posedge reset
+        if (reset) begin
+            palette &lt;= 0;
+            found &lt;= 1&#x27;b0;
+            Zr &lt;= 0;
+            Zi &lt;= 0;
+            Cr &lt;= 0;
+            Ci &lt;= 0;
+            count &lt;= 0;
+        end else if (set) begin
+            // Initialize values for this pixel
+            palette &lt;= 0;
+            found &lt;= 1&#x27;b0;
+            count &lt;= 0;
+
+            // Scale pos_X and pos_Y to complex plane
+            Cr &lt;= X_MIN + (pos_X * (X_MAX - X_MIN) / h_pixel_max);
+            Ci &lt;= Y_MIN + (pos_Y * (Y_MAX - Y_MIN) / v_pixel_max);
+            Zr &lt;= 0;
+            Zi &lt;= 0;
+        end else if (!found &amp;&amp; count &lt; 1000) begin
+            // Mandelbrot iteration
+            Zr_next = Zr * Zr / SCALE - Zi * Zi / SCALE + Cr;
+            Zi_next = 2 * Zr * Zi / SCALE + Ci;
+
+            Zr &lt;= Zr_next;
+            Zi &lt;= Zi_next;
+
+            // Check escape condition
+            if (Zr * Zr / SCALE + Zi * Zi / SCALE &gt; 4 * SCALE) begin
+                found &lt;= 1&#x27;b1;
+                palette &lt;= count[8:0];  // Map iterations to palette
+            end else begin
+                count &lt;= count + 1;
+            end
+        end else if (count &gt;= 1000) begin
+            found &lt;= 1&#x27;b1;
+            palette &lt;= count[8:0];  // Max iterations reached
+        end
+    end
+endmodule</code></pre><p id="52001259-e8e6-4518-b94f-315d89b9c152" class="">Code Vga_sync_test.v correspondant (les 2 derniers sont inchangés)</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ca07ddd5-2c92-4863-ab13-421beb5090bb" class="code"><code class="language-Verilog">module vga_sync_test (
+    input wire clk_in,
+    input wire reset,
+
+    output reg r0,
+    output reg r1,
+    output reg r2,
+    output reg b0,
+    output reg b1,
+    output reg b2,
+    output reg g0,
+    output reg g1,
+    output reg g2,
+    output wire h_sync,
+    output wire v_sync,
+    output wire led,
+    output wire locked_led,
+
+    output wire [9:0] pos_X,
+    output wire [9:0] pos_Y,
+    output wire set
+);
+    localparam  h_pixel_max = 10;
+    localparam  v_pixel_max = 10;
+    
+    reg [25:0] counter;
+    wire clk_sys;
+    wire display_en;
+    wire [9:0] h_count;
+    wire [9:0] v_count;
+
+    wire found;
+    wire [8:0] palette;
+
+    // Internal signals
+    reg [8:0] frame [479:0][639:0]; // Frame buffer: 480 rows x 640 cols, 9-bit color
+    reg [9:0] pos_X_reg, pos_Y_reg;
+    reg set_internal;
+
+    assign pos_X = pos_X_reg;
+    assign pos_Y = pos_Y_reg;
+    assign set = set_internal;
+    assign led = clk_sys;
+
+    // Framebuffer and control logic
+    always @(posedge clk_sys) begin //or posedge reset
+        if (reset) begin
+            pos_X_reg &lt;= 0;
+            pos_Y_reg &lt;= 0;
+            set_internal &lt;= 1&#x27;b1;
+        end else if (set_internal &amp;&amp; !found) begin
+            set_internal &lt;= 1&#x27;b0;
+        end else if (found) begin
+            frame[pos_Y_reg][pos_X_reg] &lt;= palette;
+
+            // Increment position
+            pos_X_reg &lt;= pos_X_reg + 1;
+            if (pos_X_reg == 639) begin
+                pos_X_reg &lt;= 0;
+                pos_Y_reg &lt;= pos_Y_reg + 1;
+            end
+            set_internal &lt;= 1&#x27;b1;
+        end else if (display_en) begin
+            if (h_count &lt; h_pixel_max &amp;&amp; v_count &lt; v_pixel_max) begin
+                {r2, r1, r0} &lt;= frame[v_count][h_count][8:6];
+                {g2, g1, g0} &lt;= frame[v_count][h_count][5:3];
+                {b2, b1, b0} &lt;= frame[v_count][h_count][2:0];
+            end else begin
+                {r2, r1, r0} &lt;= 3&#x27;b0;
+                {g2, g1, g0} &lt;= 3&#x27;b0;
+                {b2, b1, b0} &lt;= 3&#x27;b0;
+            end
+        end
+    end
+
+    // Mandelbrot generator
+    mandelbrot mandelbrot (
+        .clk_in(clk_sys),
+        .reset(reset),
+        .set(set_internal),
+        .pos_X(pos_X),
+        .pos_Y(pos_Y),
+        .found(found),
+        .palette(palette)
+    );
+
+    // VGA synchronization
+    vga_sync vga_s (
+        .clk_in(clk_in),
+        .reset(reset),
+        .h_sync(h_sync),
+        .v_sync(v_sync),
+        .clk_sys(clk_sys),
+        .h_count(h_count),
+        .v_count(v_count),
+        .display_en(display_en),
+        .locked(locked_led)
+    );
+
+endmodule
+</code></pre><h2 id="8d9789a0-688c-4bd7-a955-31edcd3115d4" class="">Conclusion</h2><p id="9556ddd1-22f9-4b12-997a-95fc30569180" class="">Ce projet nous a permis d’explorer le potentiel des FPGA, notamment dans le domaine de la vidéo. Nous avons appris à concevoir des circuits logiques en Verilog, à travailler avec des outils spécialisés, et à résoudre des problèmes liés au matériel comme les signaux VGA.</p><h3 id="b4a3df7b-3505-4316-bf1d-267b34ccd2d1" class=""><strong>Améliorations et prochaines étapes</strong></h3><ol type="1" id="10fa1622-6d18-496e-91cd-0c83b1da877b" class="numbered-list" start="1"><li><strong>Profondeur de couleur étendue</strong> :<ul id="20e02ab9-73c7-4497-971d-99b55f6ce425" class="bulleted-list"><li style="list-style-type:disc">Utiliser des broches FPGA supplémentaires et des réseaux de résistances plus fins pour prendre en charge une profondeur de couleur de 24 bits (16,7 millions de couleurs), afin d’obtenir des affichages plus vifs.</li></ul></li></ol><ol type="1" id="616cb766-1c0e-4c60-8d9b-781ed9169f93" class="numbered-list" start="2"><li><strong>Fonctionnalités interactives</strong> :<ul id="554e4661-a692-41f9-8874-e3fe6262d814" class="bulleted-list"><li style="list-style-type:disc">Incorporer des entrées utilisateur (par exemple, boutons ou encodeurs rotatifs) pour manipuler les motifs ou contrôler les animations en temps réel.</li></ul><ol type="1" id="a45ff7bf-001f-4bfa-8d7c-a3a3a1196e20" class="numbered-list" start="1"><li><strong>Graphismes avancés</strong> :</li></ol><ul id="e2f95ada-d55c-4ef1-a3a9-32f4f944ec59" class="bulleted-list"><li style="list-style-type:disc">Expérimenter avec des fractales, le décodage vidéo ou des animations basées sur des sprites pour exploiter davantage les capacités de calcul de l’FPGA.</li></ul></li></ol><p id="dbbf53d1-006d-4f95-a057-db7166dd3ff9" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
